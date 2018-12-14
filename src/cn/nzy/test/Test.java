@@ -9,22 +9,47 @@ import java.util.List;
  */
 public class Test {
 
-    private static Integer index = 0;
-
     public static void main(String[] args) {
-        String s = "@=1-2-3-4-5";
+        Singleton1 singleton1 = Singleton1.getInstance();
+        System.out.println("Singleton1 value1:" + singleton1.value1);
+        System.out.println("Singleton1 value2:" + singleton1.value2);
 
-        String s1 = s.substring(0, s.indexOf("=")+1);
-
-        StringBuilder sb = new StringBuilder(s1).append("test");
-
-        System.out.println(sb.toString());
-
-        List<String> list = new ArrayList<>(1);
-
-
-
+        Singleton2 singleton2 = Singleton2.getInstance2();
+        System.out.println("Singleton2 value1:" + singleton2.value1);
+        System.out.println("Singleton2 value2:" + singleton2.value2);
     }
 
+}
+
+class Singleton1{
+    private static Singleton1 singleton = new Singleton1();
+    public static int value1;
+    public static int value2 = 0;
+
+    private Singleton1(){
+        value1++;
+        value2++;
+    }
+
+    public static Singleton1 getInstance(){
+        return singleton;
+    }
 
 }
+
+
+class Singleton2{
+    public static int value1;
+    public static int value2 = 0;
+    private static Singleton2 singleton2 = new Singleton2();
+
+    private Singleton2(){
+        value1++;
+        value2++;
+    }
+
+    public static Singleton2 getInstance2(){
+        return singleton2;
+    }
+}
+
