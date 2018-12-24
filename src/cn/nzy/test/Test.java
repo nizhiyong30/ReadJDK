@@ -10,13 +10,7 @@ import java.util.List;
 public class Test {
 
     public static void main(String[] args) {
-        Singleton1 singleton1 = Singleton1.getInstance();
-        System.out.println("Singleton1 value1:" + singleton1.value1);
-        System.out.println("Singleton1 value2:" + singleton1.value2);
-
-        Singleton2 singleton2 = Singleton2.getInstance2();
-        System.out.println("Singleton2 value1:" + singleton2.value1);
-        System.out.println("Singleton2 value2:" + singleton2.value2);
+        System.out.println("\32" + "abc");
     }
 
 }
