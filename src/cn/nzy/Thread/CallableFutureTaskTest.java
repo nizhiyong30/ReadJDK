@@ -11,8 +11,8 @@ public class CallableFutureTaskTest {
         ExecutorService executor = Executors.newCachedThreadPool();
         Task1 task = new Task1();
         FutureTask<Integer> futureTask = new FutureTask<Integer>(task);
-        executor.submit(futureTask);
-        executor.shutdown();
+        executor.execute(new Task2());
+//        executor.shutdown();
 
         //第二种方式，注意这种方式和第一种方式效果是类似的，只不过一个使用的是ExecutorService，一个使用的是Thread
         /*Task task = new Task();
@@ -28,13 +28,13 @@ public class CallableFutureTaskTest {
 
         System.out.println("主线程在执行任务");
 
-        try {
-            System.out.println("task运行结果"+futureTask.get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            System.out.println("task运行结果"+futureTask.get());
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
 
         System.out.println("所有任务执行完毕");
     }
@@ -49,5 +49,16 @@ class Task1 implements Callable<Integer> {
             sum += i;
         }
         return sum;
+    }
+}
+
+class Task2 implements Runnable {
+    @Override
+    public void run()  {
+        System.out.println("子线程在进行计算");
+        int sum = 0;
+        for(int i=0;i<100;i++) {
+            sum += i;
+        }
     }
 }
